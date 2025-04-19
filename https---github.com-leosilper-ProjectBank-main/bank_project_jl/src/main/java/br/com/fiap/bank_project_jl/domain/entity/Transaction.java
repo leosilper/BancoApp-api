@@ -1,18 +1,11 @@
 package br.com.fiap.bank_project_jl.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transactions")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Transaction {
 
     @Id
@@ -32,10 +25,55 @@ public class Transaction {
     @JoinColumn(name = "user_id")
     private User user;
 
+    // Construtor padrão (sem o Lombok)
+    public Transaction() {}
+
+    // Construtor com parâmetros
     public Transaction(String descricao, BigDecimal valor, LocalDateTime data, User user) {
         this.descricao = descricao;
         this.valor = valor;
         this.data = data;
+        this.user = user;
+    }
+
+    // Getters e Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
         this.user = user;
     }
 }
